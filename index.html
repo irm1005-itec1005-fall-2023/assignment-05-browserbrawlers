@@ -20,9 +20,23 @@
     <link rel="stylesheet" href="./style.css" />
 
     <!-- Set the Favicon  -->
-    <link rel="icon" href="./images/favicon/rocket.svg" type="image/svg+xml" />
+    <link rel="icon" href="./images/icons/bags-shopping.svg" type="image/svg+xml" />
   </head>
   <body>
+    <header>
+      <div class="header-logo">
+         <img class="logo" src="./images/icons/bags-shopping.svg" alt="company logo"/>
+         <h2>Urban Threads</h2> 
+       </div>
+         <nav>
+           <ul>
+             <li><a href="#">Home</a></li>
+              <li><a href="#">Products</a></li>
+             <li><a href="#">About Us</a></li>
+             <li><a href="#">Contact Us</a></li>
+           </ul>
+         </nav>    
+   </header>
     <!--
 
       ADD YOUR GROUP PROJECT CODE
@@ -31,8 +45,38 @@
 
     -->
     <main>
-      <div id="app"></div>
-    </main>
+      <section class="hero">
+        <div class="hero-container">
+        <h1>Special Offer</h1>
+       
+        <p>Take advantage of our new special limited time offer for over 90% off your first purchase.</p> 
+        <div class="carousel-container">
+        <!--These images are temporary-->
+          <div class="carousel" id="image-carousel">
+            <div class="carousel-slide">
+              <img src="https://images.pexels.com/photos/52518/jeans-pants-blue-shop-52518.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Image 1">
+            </div>
+            <div class="carousel-slide">
+              <img src="https://images.pexels.com/photos/325876/pexels-photo-325876.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Image 2">
+            </div>
+            <div class="carousel-slide">
+              <img src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Image 3">
+            </div>
+          </div>
+          <button id="prevBtn">&lt;</button>
+          <button id="nextBtn">&gt;</button>
+        </div>
+
+        <a href="#">Learn More</a>
+        </div>
+  </section>
+
+  <div class="product-container">
+   
+  
+  </main>
+
+    
 
     <!-- This is where we add our awesome JavaScript code -->
     <script src="./script.js"></script>

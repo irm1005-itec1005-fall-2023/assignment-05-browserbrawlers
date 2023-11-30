@@ -22,6 +22,40 @@ let appContainer = document.getElementById(appID);
 //
 // Functions
 //
+document.addEventListener("DOMContentLoaded", function () {
+  const carousel = document.getElementById("image-carousel");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const slides = document.querySelectorAll(".carousel-slide");
+
+  let currentIndex = 0;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      const opacity = i === index ? 1 : 0; 
+      slide.style.transform = `translateX(${(i - index) * 100}%)`;
+      slide.style.opacity = opacity;
+    });
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % slides.length;
+    showSlide(currentIndex);
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    showSlide(currentIndex);
+  }
+
+  nextBtn.addEventListener("click", nextSlide);
+  prevBtn.addEventListener("click", prevSlide);
+
+  showSlide(currentIndex);
+});
+
+
+
 
 function calculateDaysLeft(countdownDate) {
   const now = new Date().getTime();

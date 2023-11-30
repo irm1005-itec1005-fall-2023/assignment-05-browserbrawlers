@@ -7,6 +7,13 @@
 */
 :root {
   /* Core colours */
+  /*https://coolors.co/palette/ede0d4-e6ccb2-ddb892-b08968-7f5539-9c6644 */
+  --colour-cream: #ede0d4;
+  --colour-sand: #e6ccb2;
+  --colour-tan: #ddb892;
+  --colour-brown: #b08968;
+  --colour-brown-darker: #7f5539;
+  --colour-brown-dark: #9c6644;
   /* https://coolors.co/palette/e63946-f1faee-a8dadc-457b9d-1d3557 */
   --colour-amaranth: #e63946;
   --colour-peppermint: #f1faee;
@@ -15,11 +22,11 @@
   --colour-cello: #1d3557;
 
   /* Header configuration */
-  --header-heading-colour: var(--colour-peppermint);
+  --header-heading-colour: var(--colour-cream);
 
   /* Body configuration */
-  --body-default-colour: var(--colour-peppermint);
-  --body-background-colour: var(--colour-cello);
+  --body-default-colour: var(--colour-brown-darker);
+  --body-background-colour: var(--colour-tan);
 }
 
 /*
@@ -31,14 +38,108 @@ body {
   background-color: var(--body-background-colour);
 }
 
-main {
-  min-height: 100vh;
-
+header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 2rem;
+  background-color: var(--colour-brown-darker);
+}
+.header-logo {
+  display: flex;
   align-items: center;
 }
 
+header img {
+  width: 1.6rem;
+  height: 1.6rem;
+  display: flex;
+}
+header h2 {
+  color: var(--header-heading-colour);
+  user-select: none;
+  margin-left: 0.5rem;
+  font-size: 2rem;
+}
+
+header nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding:0.8rem
+}
+
+header nav ul li {
+  margin-left: 2rem;
+}
+
+header nav ul li a {
+  display:flex;
+  color: #ffffff;
+  text-decoration: none;  
+}
+
+
+
+.carousel-container {
+  display: flex;
+  width: 40%; 
+  position: relative;
+  margin: 0 auto;
+}
+
+.carousel {
+  overflow: hidden;
+  width: 100%; 
+}
+
+.carousel-slide {
+  display: block;
+  width: 100%;
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5em;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+#prevBtn {
+  left: 10px;
+}
+
+#nextBtn {
+  right: 10px;
+}
+/*.carousel-button forward{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 3rem;
+  height: 3rem;
+  background-color: none;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+*/
 /*
   Screen reader text utility class
 */
