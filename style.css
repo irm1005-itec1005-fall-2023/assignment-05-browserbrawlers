@@ -79,24 +79,35 @@ header nav ul li a {
 }
 
 
+.hero {
+  padding: 2rem;
+  background-color: var(--colour-brown-dark);
+  color: var(--colour-cream);
+  height: 100vh;
+}
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
 
 .carousel-container {
-  display: flex;
-  width: 40%; 
+  width: 25%; 
   position: relative;
   margin: 0 auto;
+  margin-right: 2rem;
+  bottom: 12rem;
+  right: 2rem;
 }
 
 .carousel {
   overflow: hidden;
-  width: 100%; 
 }
 
 .carousel-slide {
-  display: block;
   width: 100%;
   position: absolute;
-  inset: 0;
   object-fit: cover;
   transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
@@ -109,7 +120,7 @@ img {
 button {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(175px);
   font-size: 1.5em;
   background: none;
   border: none;
@@ -124,22 +135,17 @@ button {
 #nextBtn {
   right: 10px;
 }
-/*.carousel-button forward{
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  width: 3rem;
-  height: 3rem;
-  background-color: none;
-  border: none;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+
+
+
+@media (max-width: 428px) {
+  .carousel-container {
+    width: 80%;
+  }
+  button {
+    transform: translateY(150px);
+  }
 }
-*/
 /*
   Screen reader text utility class
 */
