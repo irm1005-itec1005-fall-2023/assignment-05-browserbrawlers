@@ -139,8 +139,17 @@ button {
 
 
 @media (max-width: 428px) {
+  .hero-container {
+    margin-top: -14rem;
+  }
+  .hero p {
+    margin-bottom: 1rem;
+  }
   .carousel-container {
-    width: 80%;
+    width: 100%;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
   }
   button {
     transform: translateY(150px);
