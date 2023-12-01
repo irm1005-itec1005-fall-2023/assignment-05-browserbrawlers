@@ -89,16 +89,23 @@ header nav ul li a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100%;
+  padding: 2rem;
+  margin: 2rem;
+  border: 1px solid blue;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .carousel-container {
-  width: 25%; 
+  border: red 1px solid;
   position: relative;
+  width: 500px;
+  height: 500px;
   margin: 0 auto;
-  margin-right: 2rem;
-  bottom: 12rem;
-  right: 2rem;
+
 }
 
 .carousel {
@@ -106,9 +113,10 @@ header nav ul li a {
 }
 
 .carousel-slide {
-  width: 100%;
+  display: flex;
   position: absolute;
-  object-fit: cover;
+  width: 100%;
+  height: 100%;
   transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
@@ -117,13 +125,13 @@ img {
   height: auto;
 }
 
-button {
+.carousel-btn {
   position: absolute;
-  top: 50%;
-  transform: translateY(175px);
+  transform: translateY(-50%);
   font-size: 1.5em;
   background: none;
   border: none;
+  top: 50%;
   cursor: pointer;
   color: white;
 }
@@ -137,24 +145,42 @@ button {
 }
 
 
-
-@media (max-width: 428px) {
+/*
+  MEDIA QUERIES
+*/
+/* tablets */
+@media (max-width: 800px) {
   .hero-container {
-    margin-top: -14rem;
-  }
-  .hero p {
-    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
   }
   .carousel-container {
-    width: 100%;
+    border: yellow 1px solid;
+    width: 300px;
+    height: 300px;
     margin: 0 auto;
-    top: 0;
-    left: 0;
-  }
-  button {
-    transform: translateY(150px);
+  
   }
 }
+
+/* phones */
+@media (max-width: 428px) {
+.hero-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.carousel-container {
+  border: green 1px solid;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+
+}
+}
+
+
 /*
   Screen reader text utility class
 */
