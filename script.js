@@ -54,8 +54,39 @@ document.addEventListener("DOMContentLoaded", function () {
   showSlide(currentIndex);
 });
 
+let closeButton = document.getElementById("close-btn-1");
+closeButton.addEventListener("click", closePopup);
 
+function closePopup() {
+  let collapseContent = document.getElementById("collapse-content-1");
 
+  collapseContent.style.display = "none";
+}
+
+let collapseButton = document.getElementById("collapse-btn-1");
+let collapseContent = document.getElementById("collapse-content-1");
+
+collapseButton.addEventListener("click", function() {
+  collapseContent.classList.toggle("active");
+
+  if (collapseContent.style.display === "flex") {
+    collapseContent.style.display = "none";
+  } else {
+    collapseContent.style.display = "flex";
+  }
+});
+
+let collapseText = document.getElementById("collapse-text-1");
+
+collapseText.addEventListener("click", function() {
+  collapseContent.classList.toggle("active");
+
+  if (collapseContent.style.display === "flex") {
+    collapseContent.style.display = "none";
+  } else {
+    collapseContent.style.display = "flex";
+  }
+});
 
 function calculateDaysLeft(countdownDate) {
   const now = new Date().getTime();
