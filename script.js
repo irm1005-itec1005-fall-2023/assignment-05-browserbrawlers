@@ -30,6 +30,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let currentIndex = 0;
 
+
+// carousel section
   function showSlide(index) {
     slides.forEach((slide, i) => {
       const opacity = i === index ? 1 : 0; 
@@ -54,40 +56,91 @@ document.addEventListener("DOMContentLoaded", function () {
   showSlide(currentIndex);
 });
 
-let closeButton = document.getElementById("close-btn-1");
-closeButton.addEventListener("click", closePopup);
 
-function closePopup() {
-  let collapseContent = document.getElementById("collapse-content-1");
+// product section
+const productSection = document.getElementById("product-section");
+    const productContainer = document.getElementById("product-container");
 
-  collapseContent.style.display = "none";
-}
+    const createProduct = ({ id, imgSrc, name, price }) => {
+      const productContainer = document.createElement("div");
+      productContainer.className = "product-container";
 
-let collapseButton = document.getElementById("collapse-btn-1");
-let collapseContent = document.getElementById("collapse-content-1");
+      const collapseBtn = document.createElement("button");
+      collapseBtn.className = "product-btn";
+      collapseBtn.id = `collapse-btn-${id}`;
+      collapseBtn.innerHTML = `<img src="${imgSrc}" alt="${name}" />`;
 
-collapseButton.addEventListener("click", function() {
-  collapseContent.classList.toggle("active");
+      const productText = document.createElement("div");
+      productText.className = "product-text";
+      productText.innerHTML = `<h3>${name}</h3><button class="product-btn" id="collapse-text-${id}">${name}</button><p>${price}</p>`;
 
-  if (collapseContent.style.display === "flex") {
-    collapseContent.style.display = "none";
-  } else {
-    collapseContent.style.display = "flex";
-  }
-});
+      productContainer.appendChild(collapseBtn);
+      productContainer.appendChild(productText);
 
-let collapseText = document.getElementById("collapse-text-1");
+      return productContainer;
+    };
 
-collapseText.addEventListener("click", function() {
-  collapseContent.classList.toggle("active");
+    const createCollapseContent = ({ id, imgSrc, name, price }) => {
+      const collapseContent = document.createElement("div");
+      collapseContent.className = "collapse-content";
+      collapseContent.id = `collapse-content-${id}`;
 
-  if (collapseContent.style.display === "flex") {
-    collapseContent.style.display = "none";
-  } else {
-    collapseContent.style.display = "flex";
-  }
-});
+      const closeButton = document.createElement("button");
+      closeButton.className = "close-btn"; 
+      closeButton.id = `close-btn-${id}`;
+      closeButton.textContent = "x";
 
+      const collapseImage = document.createElement("div");
+      collapseImage.className = "collapse-image";
+      collapseImage.innerHTML = `<img src="${imgSrc}" alt="${name}" />`;
+
+      const productInfo = document.createElement("div");
+      productInfo.className = "product-info";
+      productInfo.innerHTML = `<h3>${name}</h3><label for="sizing">Size</label><select id="sizing-${id}" required><option value="">--Select a size--</option><option value="small">S</option><option value="medium">M</option><option value="large">L</option><option value="extra-large">XL</option></select><p>Color: Black</p><p>Price: ${price}</p><button class="add-to-cart">Add to Cart</button>`;
+
+      collapseContent.appendChild(closeButton);
+      collapseContent.appendChild(collapseImage);
+      collapseContent.appendChild(productInfo);
+
+      return collapseContent;
+    };
+
+    // add products here
+    const productsData = [
+      { id: 1, imgSrc: "./images/black-t-shirt.webp", name: "Black T-Shirt", price: "$1.00" },
+    ];
+
+    productsData.forEach((productData) => {
+      const product = createProduct(productData);
+      const collapseContent = createCollapseContent(productData);
+
+      productContainer.appendChild(product);
+      productSection.appendChild(collapseContent);
+
+      const collapseBtn = document.getElementById(`collapse-btn-${productData.id}`);
+      const closeBtn = document.getElementById(`close-btn-${productData.id}`);
+
+      collapseBtn.addEventListener("click", () => toggleCollapse(productData.id));
+      closeBtn.addEventListener("click", () => closePopup(productData.id));
+    });
+
+    function toggleCollapse(id) {
+      const collapseContent = document.getElementById(`collapse-content-${id}`);
+      collapseContent.style.display = collapseContent.style.display === "none" ? "flex" : "none";
+    }
+
+    function closePopup(id) {
+      const collapseContent = document.getElementById(`collapse-content-${id}`);
+      collapseContent.style.display = "none";
+    }
+
+
+
+
+
+
+
+// Calculate the days left until the project is due
 function calculateDaysLeft(countdownDate) {
   const now = new Date().getTime();
   const countdown = new Date(countdownDate).getTime();

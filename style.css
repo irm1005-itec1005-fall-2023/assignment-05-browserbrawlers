@@ -240,7 +240,7 @@ img {
   width: 100%;
 }
 
-.product-info h4 {
+.product-info h3 {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
 }
@@ -267,6 +267,7 @@ img {
 }
 
 .close-btn {
+  position: absolute;
   background: none;
   cursor: pointer;
 
