@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function showSlide(index) {
     slides.forEach((slide, i) => {
       const opacity = i === index ? 1 : 0; 
-      slide.style.transform = `translateX(${(i - index) * 100}%)`;
+      slide.style.transform = `translateX(${(i - index) * 30}%)`;
       slide.style.opacity = opacity;
     });
   }
@@ -72,7 +72,7 @@ const productSection = document.getElementById("product-section");
 
       const productText = document.createElement("div");
       productText.className = "product-text";
-      productText.innerHTML = `<h3>${name}</h3><button class="product-btn" id="collapse-text-${id}">${name}</button><p>${price}</p>`;
+      productText.innerHTML = `<button class="product-btn" id="collapse-text-${id}">${name}</button><p>${price}</p>`;
 
       productContainer.appendChild(collapseBtn);
       productContainer.appendChild(productText);
@@ -108,18 +108,26 @@ const productSection = document.getElementById("product-section");
     // add products here
     const productsData = [
       { id: 1, imgSrc: "./images/black-t-shirt.webp", name: "Black T-Shirt", price: "$1.00" },
+      { id: 2, imgSrc: "./images/white-t-shirt.webp", name: "White T-Shirt", price: "$1.00" },
+      { id: 3, imgSrc: "./images/black-hoodie.webp", name: "Black Hoodie", price: "$1.00" },
+      { id: 4, imgSrc: "./images/white-hoodie.webp", name: "White Hoodie", price: "$1.00"},
+      { id: 5, imgSrc: "./images/black-sweatshirt.webp", name: "Black Sweatshirt", price: "$1.00" },
+      { id: 6, imgSrc: "./images/white-sweatshirt.webp", name: "White Sweatshirt", price: "$1.00"},
+      { id: 7, imgSrc: "./images/black-jacket.webp", name: "Black Jacket", price: "$1.00" },
+      { id: 8, imgSrc: "./images/white-jacket.webp", name: "White Jacket", price: "$1.00"},
+
     ];
 
     productsData.forEach((productData) => {
       const product = createProduct(productData);
       const collapseContent = createCollapseContent(productData);
-
-      productContainer.appendChild(product);
+    
+      productSection.appendChild(product);
       productSection.appendChild(collapseContent);
-
+    
       const collapseBtn = document.getElementById(`collapse-btn-${productData.id}`);
       const closeBtn = document.getElementById(`close-btn-${productData.id}`);
-
+    
       collapseBtn.addEventListener("click", () => toggleCollapse(productData.id));
       closeBtn.addEventListener("click", () => closePopup(productData.id));
     });
@@ -134,6 +142,69 @@ const productSection = document.getElementById("product-section");
       collapseContent.style.display = "none";
     }
 
+function showOverlay() {
+  const overlay = document.getElementById("overlay");
+  overlay.style.display = "block";
+}
+
+function hideOverlay() {
+  const overlay = document.getElementById("overlay");
+  overlay.style.display = "none";
+}
+
+function toggleCollapse(id) {
+  const collapseContent = document.getElementById(`collapse-content-${id}`);
+  collapseContent.style.display = collapseContent.style.display === "none" ? "flex" : "none";
+
+  if (collapseContent.style.display === "flex") {
+    showOverlay();
+  } else {
+    hideOverlay();
+  }
+}
+
+function closePopup(id) {
+  const collapseContent = document.getElementById(`collapse-content-${id}`);
+  collapseContent.style.display = "none";
+
+  hideOverlay();
+}
+
+const overlay = document.getElementById("overlay");
+
+overlay.addEventListener("click", () => {
+  const openCollapseContent = document.querySelector(".collapse-content[style='display: flex;']");
+  if (openCollapseContent) {
+    const productId = openCollapseContent.id.split("-")[2];
+    closePopup(productId);
+  }
+});
+
+function showOverlay() {
+  overlay.style.display = "block";
+}
+
+function hideOverlay() {
+  overlay.style.display = "none";
+}
+
+function toggleCollapse(id) {
+  const collapseContent = document.getElementById(`collapse-content-${id}`);
+
+  collapseContent.style.display = collapseContent.style.display === "none" ? "flex" : "none";
+  if (collapseContent.style.display === "flex") {
+    showOverlay();
+  } else {
+    hideOverlay();
+  }
+}
+
+function closePopup(id) {
+  const collapseContent = document.getElementById(`collapse-content-${id}`);
+  collapseContent.style.display = "none";
+
+  hideOverlay();
+}
 
 
 
