@@ -27,6 +27,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const prevBtn = document.getElementById("prevBtn");
   const nextBtn = document.getElementById("nextBtn");
   const slides = document.querySelectorAll(".carousel-slide");
+  document.querySelectorAll('.collapse-content').forEach(content => {
+    content.style.display = 'none';
+  });
+  
 
   let currentIndex = 0;
 
@@ -72,7 +76,7 @@ const productSection = document.getElementById("product-section");
 
       const productText = document.createElement("div");
       productText.className = "product-text";
-      productText.innerHTML = `<button class="product-btn" id="collapse-text-${id}">${name}</button><p>${price}</p>`;
+      productText.innerHTML = `<h3 class="product-btn" id="collapse-text-${id}">${name}</h3><p>${price}</p>`;
 
       productContainer.appendChild(collapseBtn);
       productContainer.appendChild(productText);
@@ -96,7 +100,7 @@ const productSection = document.getElementById("product-section");
 
       const productInfo = document.createElement("div");
       productInfo.className = "product-info";
-      productInfo.innerHTML = `<h3>${name}</h3><label for="sizing">Size</label><select id="sizing-${id}" required><option value="">--Select a size--</option><option value="small">S</option><option value="medium">M</option><option value="large">L</option><option value="extra-large">XL</option></select><p>Color: Black</p><p>Price: ${price}</p><button class="add-to-cart">Add to Cart</button>`;
+      productInfo.innerHTML = `<h4>${name}</h4><label for="sizing">Size</label><select id="sizing-${id}" required><option value="">--Select a size--</option><option value="small">S</option><option value="medium">M</option><option value="large">L</option><option value="extra-large">XL</option></select><p>Color: Black</p><p>Price: ${price}</p><button class="add-to-cart">Add to Cart</button>`;
 
       collapseContent.appendChild(closeButton);
       collapseContent.appendChild(collapseImage);
@@ -131,80 +135,41 @@ const productSection = document.getElementById("product-section");
       collapseBtn.addEventListener("click", () => toggleCollapse(productData.id));
       closeBtn.addEventListener("click", () => closePopup(productData.id));
     });
-
     function toggleCollapse(id) {
       const collapseContent = document.getElementById(`collapse-content-${id}`);
       collapseContent.style.display = collapseContent.style.display === "none" ? "flex" : "none";
+    
+      if (collapseContent.style.display === "flex") {
+        showOverlay();
+      } else {
+        hideOverlay();
+      }
     }
-
+    
     function closePopup(id) {
       const collapseContent = document.getElementById(`collapse-content-${id}`);
       collapseContent.style.display = "none";
+    
+      hideOverlay();
     }
-
-function showOverlay() {
-  const overlay = document.getElementById("overlay");
-  overlay.style.display = "block";
-}
-
-function hideOverlay() {
-  const overlay = document.getElementById("overlay");
-  overlay.style.display = "none";
-}
-
-function toggleCollapse(id) {
-  const collapseContent = document.getElementById(`collapse-content-${id}`);
-  collapseContent.style.display = collapseContent.style.display === "none" ? "flex" : "none";
-
-  if (collapseContent.style.display === "flex") {
-    showOverlay();
-  } else {
-    hideOverlay();
-  }
-}
-
-function closePopup(id) {
-  const collapseContent = document.getElementById(`collapse-content-${id}`);
-  collapseContent.style.display = "none";
-
-  hideOverlay();
-}
-
-const overlay = document.getElementById("overlay");
-
-overlay.addEventListener("click", () => {
-  const openCollapseContent = document.querySelector(".collapse-content[style='display: flex;']");
-  if (openCollapseContent) {
-    const productId = openCollapseContent.id.split("-")[2];
-    closePopup(productId);
-  }
-});
-
-function showOverlay() {
-  overlay.style.display = "block";
-}
-
-function hideOverlay() {
-  overlay.style.display = "none";
-}
-
-function toggleCollapse(id) {
-  const collapseContent = document.getElementById(`collapse-content-${id}`);
-
-  collapseContent.style.display = collapseContent.style.display === "none" ? "flex" : "none";
-  if (collapseContent.style.display === "flex") {
-    showOverlay();
-  } else {
-    hideOverlay();
-  }
-}
-
-function closePopup(id) {
-  const collapseContent = document.getElementById(`collapse-content-${id}`);
-  collapseContent.style.display = "none";
-
-  hideOverlay();
-}
+    
+    const overlay = document.getElementById("overlay");
+    
+    overlay.addEventListener("click", () => {
+      const openCollapseContent = document.querySelector(".collapse-content[style='display: flex;']");
+      if (openCollapseContent) {
+        const productId = openCollapseContent.id.split("-")[2];
+        closePopup(productId);
+      }
+    });
+    
+    function showOverlay() {
+      overlay.style.display = "block";
+    }
+    
+    function hideOverlay() {
+      overlay.style.display = "none";
+    }
 
 
 
